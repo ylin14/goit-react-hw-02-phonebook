@@ -22,7 +22,7 @@ class PhoneBook extends Component {
   addContacts = data => {
     // error due to duplicated contacts
     const { contacts } = this.state;
-    const isDuplicated = contacts.find(item => item.name === data.name);
+    const isDuplicated = contacts.find(item => item.name.toLowerCase() === data.name.toLowerCase());
     if (isDuplicated) {
       alert(`${data.name} is already in your Phonebook`);
       return;
@@ -38,9 +38,7 @@ class PhoneBook extends Component {
         number,
       };
       return {
-        contacts: [...contacts, newContacts],
-        name: ' ',
-        number: ' ',
+        contacts: [...contacts, newContacts]
       };
     });
   };
@@ -60,12 +58,9 @@ class PhoneBook extends Component {
     }
 
     const filterRequest = filter.toLowerCase();
-    const filteredContacts = contacts.filter(({ name }) => {
-      const res = name.toLowerCase().includes(filterRequest);
-      return res;
+    return contacts.filter(({ name }) => {
+      return name.toLowerCase().includes(filterRequest);
     });
-
-    return filteredContacts;
   }
 
   //? delete contacts from state
