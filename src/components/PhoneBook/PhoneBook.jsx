@@ -18,20 +18,7 @@ class PhoneBook extends Component {
     filter: '',
   };
 
-  componentDidMount() {
-    const savedContacts = localStorage.getItem('contacts');
-    const contacts = JSON.parse(savedContacts);
-    if(contacts?.length) {
-      this.setState({
-        contacts
-      })
-    }
-  }
 
-  componentDidUpdate() {
-    const contacts = this.state.contacts;
-    localStorage.setItem('contacts', JSON.stringify(contacts))
-  }
 
   // ? add contacts to state with input value
   addContacts = data => {
